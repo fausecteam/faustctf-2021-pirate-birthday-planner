@@ -1,0 +1,22 @@
+head
+    link(rel='stylesheet' href='/static/style.css')
+    script(src='https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js')
+    script.
+        window.history.pushState({}, document.title, "/");
+.container
+    if error
+        .container-row.error
+            h4 Arr, #{error}
+    .container-row
+        h2 Welcome to the Ultimate Pirates Birthday Planner
+        form#form-field.index-form(method='post' action='/party')
+            input(type='text' name='party[title]' placeholder='Party Name')
+            input(type='text' name='party[admin]' placeholder='Party Host')
+            input(type='text' name='party[guestlist]' placeholder='Guests (Alice, Bob,...)')
+            textarea(name='party[description]' rows='4' placeholder='Description')
+            input(type='text' name='party[time]' placeholder='When?')
+            input(type='text' name='party[loc]' placeholder='Where?')
+            button.button-part Send
+    .container-row
+        p
+            | Do what you want, cause a pirate is free, you are a pirate! But even pirates have to move their birthday parties to the virtual ocean this year. That&apos;s why we created this great Pirates Birthday Planner :)

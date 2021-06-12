@@ -1,0 +1,17 @@
+head
+  link(rel='stylesheet' href='/static/style.css')
+  script(src='https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js')
+  script(src='/static/index.js')
+.emoji
+  span(data-z='' data-z-depth='40px' data-z-layer='40' data-z-event='pointer')
+    // Icon created by https://www.flaticon.com/de/autoren/flat-icons
+    img.emoji-img(width='250' height='250' src='/static/pirate01.png')
+.container
+  .container-row.container-row-single
+    h2#title Welcome to "#{ title }"
+    form#form-field.container-row-form(onsubmit='return false')
+      input#form-text-input(type='text' placeholder='Name')
+      input#form-pin-input(type='text' placeholder='Pin')
+      button#form-button-input.button-part Send
+input#user-pin(type='hidden' value=`${userpin}`)
+script(src='/static/ztext.js')

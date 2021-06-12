@@ -1,0 +1,51 @@
+stages:
+  - build
+  - upload
+
+compose_build:
+  stage: build
+  # build and push all images from the docker-compose file
+  # when the faust.cs.fau.de:5000 registry gets https, the image can pulled from there
+  image: "thejonny/kaniko-compose-builder"
+  script: "cd src && kaniko-compose-builder --insecure-registry=faust.cs.fau.de:5000"
+  only:
+    - master
+    - dockerci
+  tags:
+    - faust
+    - docker
+
+make:
+  stage: build
+  image: "debian:bullseye"
+  before_script:
+    - apt-get update
+    - apt-get -y install make
+  script: make install
+  artifacts:
+    paths:
+      - metadata.yml
+      - dist_root/
+  only:
+    - master
+    - dockerci
+  tags:
+    - faust
+    - docker
+
+upload_job:
+  stage: upload
+  script:
+    - ssh ci-upload@www.faust.cs.fau.de mkdir -p "/var/www/files/internal/ci/faustctf/2021/$CI_PROJECT_NAME"
+    - tar -v -czp -H posix -f dist_root.tar.gz -C dist_root .
+    - scp metadata.yml dist_root.tar.gz "ci-upload@www.faust.cs.fau.de:/var/www/files/internal/ci/faustctf/2021/$CI_PROJECT_NAME/"
+  after_script:
+    - find "$CI_PROJECT_DIR" -mindepth 1 -delete
+  variables:
+    GIT_STRATEGY: none
+  only:
+    - master
+    - dockerci
+  tags:
+    - faust
+    - www-upload

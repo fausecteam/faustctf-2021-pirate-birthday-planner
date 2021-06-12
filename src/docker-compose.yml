@@ -1,0 +1,34 @@
+version: '2.2'
+
+services:
+    node-deps:
+        image: faust.cs.fau.de:5000/pirate-birthday-planner-deps
+        build:
+            context: app 
+            dockerfile: Dockerfile.deps
+
+        scale: 0
+    mongo:
+        image: mongo
+        volumes:
+            - ./data:/data/db
+        restart: unless-stopped
+    web:
+        image: faust.cs.fau.de:5000/pirate-birthday-planner
+        build:
+            context: app 
+            dockerfile: Dockerfile.nodeps
+        restart: unless-stopped
+        ports:
+            - "2727:80"
+        external_links:
+            - mongo
+
+
+networks:
+    default:
+        enable_ipv6: true
+        ipam:
+            driver: default
+            config:
+                - subnet: "fdff:d0ce:2727::1/64"

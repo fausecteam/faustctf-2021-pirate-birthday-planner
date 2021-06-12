@@ -1,0 +1,9 @@
+FROM faust.cs.fau.de:5000/pirate-birthday-planner-deps
+
+WORKDIR /usr/src/app
+COPY *.js ./
+COPY public ./public
+COPY views ./views
+
+EXPOSE 8080
+CMD [ "node", "server.js" ]

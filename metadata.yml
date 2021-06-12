@@ -1,0 +1,25 @@
+# Human-readable name of the service
+name: pirate-birthday-planner 
+# Name of the service for usage in paths, usernames etc.: Should only consist of lowercase alphanumeric
+# characters, must be identical to the (URL) project name of the GitLab repo
+slug: pirate-birthday-planner
+authors:
+  - fhantke <florian.hantke@fau.de>
+
+install:
+  prevent_outgoing_connections: True
+  postinst_commands:
+      - docker-compose -f /srv/pirate-birthday-planner/docker-compose.yml pull
+      - docker pull node
+      - docker pull faust.cs.fau.de:5000/pirate-birthday-planner-deps
+      - docker pull faust.cs.fau.de:5000/pirate-birthday-planner
+      - ln -s /etc/systemd/system/docker-compose@.service /etc/systemd/system/multi-user.target.wants/docker-compose@pirate-birthday-planner.service
+
+checker:
+  script_path: checker/mychecker.py
+  # Upper bound of how long the Checker Script takes to run (for a single team)
+  # Used for scheduling checks within a tick, executions taking longer *may* get terminated
+  max_duration: 60
+  debian_packages:
+    - python3-requests
+  pip_packages: []

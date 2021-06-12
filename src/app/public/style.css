@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@300&display=swap');
+
+/* Sorry for the mess... it's css ¯\_(ツ)_/¯ */
+
+body {
+    font-family: 'Londrina Solid', cursive;
+    font-size: 32px;
+    background-color: #84AEAD; 
+    color: #1d1d1d;
+    height: 100h;   
+}
+
+/* 
+ * === Elements ===
+ */
+
+.container {
+    width: 50%;
+    height: 100%;
+    margin: 0 auto;
+    display: block;
+}
+
+.container-row {    
+  width: 100%;
+  border: solid #1d1d1d;
+  text-align: center;
+  background-color: #496749; 
+  place-items: center;
+
+  margin-bottom: 0.5em;
+
+  box-shadow: 0 0.125em 0.3125em rgb(0 0 0 / 30%);  
+}
+
+.error {
+    background-color: #752d2d;
+}
+
+.container-row-animation {  
+    transform: translateY(0%);
+    transition: all 0.5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out; /** Chrome & Safari **/
+    -moz-transition: all 0.5s ease-in-out; /** Firefox **/
+    -o-transition: all 0.5s ease-in-out; /** Opera **/
+    animation-fill-mode: forwards; 
+}
+.container-row-single {
+    transform: translateY(75%);
+}
+.container-row-multiple {
+    margin-bottom: 1em;
+}
+.name-field {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding-inline: 3em;
+}
+.name-field > div {
+    margin-inline: 0.5em;
+}
+.name-field > .accept {
+    color: #1D1D1D;
+}
+
+.name-field > .maybe {
+    color: #3C4E3C;
+}
+
+#logout {
+    text-decoration: none;
+    color: #1D1D1D;
+    background-color: #80877B;
+    border-radius: 5em;
+    padding: 0.2em;
+    padding-inline: 1em;
+}
+
+#logout:hover {
+    color: #BDBDBD;
+}
+
+/* 
+ * === Froms ===
+ */
+
+.container-row-form > input[type=text]{
+    font: inherit;
+    height: 100%;
+    width: 100%;
+    color: #000;
+    background-color: #726454;
+    
+    border-radius: 5em;
+    border: 0;
+    outline: 0;
+    box-sizing: border-box;
+
+    padding: 0 0.714em;
+}
+
+.container-row-form > button {
+    height: 100%;
+    background-color: #80877B;
+    color: #1d1d1d;
+    font: inherit;
+
+    border: 0;
+    outline: 0;
+    border-radius: 5em;
+    box-sizing: border-box;
+}
+
+button:hover {
+    color: #BDBDBD;
+}
+
+
+.button-full {
+    width: 100%;    
+}
+.button-part {
+    width: 5em;    
+}
+
+.index-form {
+    background-color: #726454;
+    box-shadow: 0 0.125em 0.3125em rgb(0 0 0 / 30%);
+    border-radius: 3em;
+    padding: 0.2em;
+    width: 60%;
+    margin-inline: auto;
+    padding-inline: 3em;
+}
+
+.index-form > button {
+    background-color: #80877B;
+    border: 0;
+    outline: 0;
+    border-radius: 5em;
+    width: 100%;
+    font-size: inherit;
+}
+
+.index-form > button:hover {
+    color: #BDBDBD;
+}
+
+.index-form > input::placeholder, textarea::placeholder {
+    color: #0F0E0E
+}
+
+.index-form > input, textarea {
+    color: #000;
+    background-color: #726454;
+    border: 0;
+    outline: 0;
+    font: inherit;
+    padding: 0 0.714em;
+    box-sizing: border-box;
+}
+
+.container-row-form {
+    width: 80%;
+    height: 2em;
+    transform: translateX(12%);
+    font: inherit;
+
+    padding: 0.2em;
+    box-sizing: border-box;
+    box-shadow: 0 0.125em 0.3125em rgb(0 0 0 / 30%);
+    border-radius: 6.25em;
+    background-color: #726454;
+    transition: 0.2s;
+    display: flex;
+}
+
+/* 
+ * === Emoji ===
+ */
+canvas {    
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 3;
+    pointer-events:none;
+}
+
+.z-layer {
+    filter: brightness(0.8);
+}
+
+.z-layer:first-child {
+    filter: brightness(1);
+}
+
+.animation-idle {
+    animation: idle 10s linear infinite;
+}
+
+@keyframes idle {
+    0%, 50%, 100% {
+        transform: rotate3d(0, 0, 1, 0deg);
+    }
+    25% {transform: rotate3d(0, 0, 1, -20deg);}
+    75% {transform: rotate3d(0, 0, 1, 20deg);}
+}
+
+.animation-rotate {
+    animation: rotate 3s;
+}
+
+@keyframes rotate {
+    0%, 100% {
+        transform: rotate3d(0, 1, 0, 0deg);
+    }
+    50% {transform: rotate3d(0, 1, 0, 360deg);}
+}
+
+.emoji {
+    position: absolute;
+    top: 1em;
+    right: 5vw;
+    z-index: 99;
+}
+
+.emoji-img {
+    width: 10vw;
+    height: 14vw;
+}
+
+ @media screen and (max-device-width: 640px), screen and (max-width: 640px) {
+    .container {  width: 80%; }
+ }
+

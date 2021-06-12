@@ -1,0 +1,18 @@
+{
+    "name": "bday_web_app",
+    "version": "1.0.0",
+    "description": "BDay App on Docker",
+    "author": "FHantke", 
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "dependencies": {
+        "express": "^4.17.1",
+        "serve-favicon": "^2.5.0",
+        "mongoose": "^5.12.3",
+        "cookie-session": "^1.4.0",
+        "pug": "^3.0.2",
+        "uuid": "^8.3.2"
+    }
+}
